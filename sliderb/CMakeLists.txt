@@ -1,23 +1,15 @@
-cmake_minimum_required(VERSION 3.14)
-project(
-    egt-sliderb
-    VERSION 0.1.0
-    DESCRIPTION "Custom slider"
-    LANGUAGES CXX
-)
+#---- Sliderb
+if(EGT_SAMPLES_CONTRIBUTION_SLIDERB)
+    find_package(Threads REQUIRED)
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(LIBEGT REQUIRED IMPORTED_TARGET libegt)
+    pkg_check_modules(LIBEGT REQUIRED IMPORTED_TARGET cairo)
 
-set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_STANDARD_REQUIRED true)
+    link_directories(${LIBEGT_LIBRARY_DIRS})
 
-find_package(Threads REQUIRED)
-find_package(PkgConfig REQUIRED)
-pkg_check_modules(LIBEGT REQUIRED IMPORTED_TARGET libegt)
-pkg_check_modules(LIBEGT REQUIRED IMPORTED_TARGET cairo)
+    add_executable(egt-sliderb main.cpp sliderb.cpp sliderb.h custom_theme.h)
 
-link_directories(${LIBEGT_LIBRARY_DIRS})
+    target_link_libraries(egt-sliderb PkgConfig::LIBEGT ${LIBEGT_LIBRARIES} Threads::Threads)
 
-add_executable(egt-sliderb main.cpp sliderb.cpp sliderb.h custom_theme.h)
-
-target_link_libraries(egt-sliderb PkgConfig::LIBEGT ${LIBEGT_LIBRARIES} Threads::Threads)
-
-install(TARGETS egt-sliderb DESTINATION bin)
+    install(TARGETS egt-sliderb DESTINATION bin)
+endif()
