@@ -15,8 +15,8 @@ Here are the rules to submit code:
 
 - Code must use the Apache 2.0 License
 
-- Using a build system as CMake or autotools is strongly recommended. At least,
-a Makefile is required.
+- Build system is CMake. A subdirectory CMakeLists.txt must be provided and the
+top level CMakeLists.txt must be updated to add the new subdirectory.
 
 - Code must compile without any warnings with `-Wall -Wextra`
 
