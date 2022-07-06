@@ -19,8 +19,77 @@
 
 #include "sliderb.h"
 
+#include <functional>
 #include <iostream>
-#include "custom_theme.h"
+
+using namespace egt;
+
+/* black background theme with white text and cyan highlight */
+static void update_palette(Palette& palette)
+{
+    palette.set(Palette::ColorId::button_bg,
+                Palette::GroupId::normal,
+                Palette::black);
+    palette.set(Palette::ColorId::text,
+                Palette::GroupId::normal,
+                Palette::white);
+    palette.set(Palette::ColorId::text_highlight,
+                Palette::GroupId::normal,
+                Color(0x37949eff));
+    palette.set(Palette::ColorId::button_fg,
+                Palette::GroupId::normal,
+                Color(0x37949eff));
+
+    palette.set(Palette::ColorId::button_bg,
+                Palette::GroupId::active,
+                Palette::black);
+    palette.set(Palette::ColorId::text,
+                Palette::GroupId::active,
+                Palette::white);
+    palette.set(Palette::ColorId::text_highlight,
+                Palette::GroupId::active,
+                Color(0x37949eff));
+    palette.set(Palette::ColorId::button_fg,
+                Palette::GroupId::active,
+                Color(0x37949eff));
+}
+
+static void update_palette_left(Palette& palette)
+{
+    palette.set(Palette::ColorId::button_bg,
+                Palette::GroupId::normal,
+                Color(0xab7e6dff));
+    palette.set(Palette::ColorId::text,
+                Palette::GroupId::normal,
+                Palette::white);
+    palette.set(Palette::ColorId::text_highlight,
+                Palette::GroupId::normal,
+                Color(0x825639ff));
+    palette.set(Palette::ColorId::button_fg,
+                Palette::GroupId::normal,
+                Color(0x825639ff));
+
+    palette.set(Palette::ColorId::button_bg,
+                Palette::GroupId::active,
+                Color(0xab7e6dff));
+    palette.set(Palette::ColorId::text,
+                Palette::GroupId::active,
+                Palette::white);
+    palette.set(Palette::ColorId::text_highlight,
+                Palette::GroupId::active,
+                Color(0x825639ff));
+    palette.set(Palette::ColorId::button_fg,
+                Palette::GroupId::active,
+                Color(0x825639ff));
+}
+
+static void update_local_palette(Widget& widget, const std::function<void(Palette&)>& update)
+{
+    widget.reset_palette();
+    Palette local_palette(widget.palette());
+    update(local_palette);
+    widget.palette(local_palette);
+}
 
 int main(int argc, char** argv)
 {
@@ -51,12 +120,6 @@ int main(int argc, char** argv)
     themeCombo.margin(5);
     win.add(themeCombo);
 
-    CustomTheme1 custom_slider_theme;
-    custom_slider_theme.apply();
-
-    CustomTheme2 custom_slider_theme_left;
-    custom_slider_theme_left.apply();
-
 	// create a text label to show the value of the slider
 	auto label1 = std::make_shared<egt::Label>("Set", egt::Rect(400, 270, 100, 20));
 	label1->fill_flags(egt::Theme::FillFlag::blend);
@@ -69,7 +132,7 @@ int main(int argc, char** argv)
 //	slider1->slider_flags().set({egt::SliderB::SliderBFlag::show_labels});
 	slider1->label_interval(10);
 	slider1->live_update(true);
-	slider1->theme(custom_slider_theme);
+	update_local_palette(*slider1.get(), update_palette);
 	win.add(slider1);
 
 	// create horizontal slider 2
@@ -77,7 +140,7 @@ int main(int argc, char** argv)
 	slider2->slider_flags().set({egt::SliderB::SliderBFlag::bump_top, egt::SliderB::SliderBFlag::show_value, egt::SliderB::SliderBFlag::show_labels});
 	slider2->padding(10);
 	slider2->label_interval(20);
-	slider2->theme(custom_slider_theme);
+	update_local_palette(*slider2.get(), update_palette);
 	win.add(slider2);
 
 	// create vertical slider 3
@@ -85,7 +148,7 @@ int main(int argc, char** argv)
 	slider3->slider_flags().set({egt::SliderB::SliderBFlag::bump_right, egt::SliderB::SliderBFlag::show_labels});
 	slider3->label_interval(5);
 	slider3->padding(8);
-	slider3->theme(custom_slider_theme_left);
+	update_local_palette(*slider3.get(), update_palette_left);
 	win.add(slider3);
 
 	//create vertical slider 4
@@ -93,8 +156,7 @@ int main(int argc, char** argv)
 	slider4->slider_flags().set({egt::SliderB::SliderBFlag::show_labels, egt::SliderB::SliderBFlag::highlight_value});
 	slider4->label_interval(1);
 	slider4->padding(8);
-
-	slider4->theme(custom_slider_theme);
+	update_local_palette(*slider4.get(), update_palette);
 	slider4->font(egt::Font(25, egt::Font::Weight::bold));
 	win.add(slider4);
 
@@ -108,17 +170,10 @@ int main(int argc, char** argv)
     	if (i != end(combo_items))
     		global_theme(i->second());
 
-    	// copy the theme settings from the current global theme
-    	CustomTheme1 newTheme;
-    	newTheme.duplicate_global();
-    	CustomTheme2 newTheme2;
-    	newTheme2.duplicate_global();
-
-    	// and update the sliders
-    	slider1->theme(newTheme);
-    	slider2->theme(newTheme);
-    	slider3->theme(newTheme2);
-    	slider4->theme(newTheme);
+    	update_local_palette(*slider1.get(), update_palette);
+    	update_local_palette(*slider2.get(), update_palette);
+    	update_local_palette(*slider3.get(), update_palette_left);
+    	update_local_palette(*slider4.get(), update_palette);
 
     	// force redraw (caching) of the handles to correctly copy new global
     	// background color into handle theme
