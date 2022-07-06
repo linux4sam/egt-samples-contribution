@@ -120,6 +120,26 @@ public:
         parent.add(*this);
     }
 
+    explicit SliderBType(Serializer::Properties& props)
+        : SliderBType(props, false)
+    {
+    }
+
+protected:
+
+    using ValueRangeWidget<T>::deserialize_leaf;
+
+    explicit SliderBType(Serializer::Properties& props, bool is_derived) noexcept
+        : ValueRangeWidget<T>(props, true)
+    {
+        deserialize(props);
+
+        if (!is_derived)
+            deserialize_leaf(props);
+    }
+
+public:
+
     // handle events for the bump slider
     void handle(Event& event) override
     {
@@ -382,7 +402,7 @@ protected:
 
 private:
 
-    void deserialize(Serializer::Properties& props) override;
+    void deserialize(Serializer::Properties& props);
 
 };
 
