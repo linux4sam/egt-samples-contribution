@@ -116,7 +116,7 @@ int main(int argc, char** argv)
     egt::ComboBox themeCombo;
     for (const auto& i : combo_items)
     	themeCombo.add_item(std::make_shared<egt::StringItem>(i.first));
-    themeCombo.align(egt::AlignFlag::top | egt::AlignFlag::center);
+    themeCombo.align(egt::AlignFlag::top | egt::AlignFlag::center_horizontal);
     themeCombo.margin(5);
     win.add(themeCombo);
 
