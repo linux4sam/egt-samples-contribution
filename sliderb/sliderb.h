@@ -277,6 +277,9 @@ public:
 
 protected:
 
+    bool internal_drag() const override { return true; }
+    bool internal_track_drag() const override { return true; }
+
     // cached image of the handle
     shared_cairo_surface_t m_handle_surface;
 
