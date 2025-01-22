@@ -6,6 +6,8 @@ project(
     DESCRIPTION "A collection of samples made by the community"
     LANGUAGES CXX)
 
+include(GNUInstallDirs)
+
 set(CMAKE_CXX_STANDARD 17)
 
 find_package(Threads REQUIRED)

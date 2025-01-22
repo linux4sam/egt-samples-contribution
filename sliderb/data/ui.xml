@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<egt>
+	<theme>
+		<property name="type">DefaultTheme</property>
+	</theme>
+	<widgets>
+		<widget name="Window0" type="TopWindow">
+			<property name="pixelformat">argb8888</property>
+			<property name="windowhint">automatic</property>
+			<property name="show">true</property>
+			<property name="width">800</property>
+			<property name="height">480</property>
+			<property name="fillflags">solid</property>
+			<widget name="Window1" type="Window">
+				<property name="pixelformat">argb8888</property>
+				<property name="windowhint">automatic</property>
+				<property name="show">true</property>
+				<property name="width">800</property>
+				<property name="height">480</property>
+				<property name="fillflags">solid</property>
+				<widget name="Logo" type="ImageLabel">
+					<property name="show">true</property>
+					<property name="x">336</property>
+					<property name="y">223</property>
+					<property name="width">128</property>
+					<property name="height">34</property>
+					<property name="align">center</property>
+					<property name="autoresize">false</property>
+					<property name="text">ImageLabel8</property>
+					<property name="text_align">center</property>
+					<property name="showlabel">false</property>
+					<property name="image">icon:mgs_logo_black.png;128</property>
+					<property name="image_align">center|expand</property>
+				</widget>
+				<widget name="label1" type="Label">
+					<property name="show">true</property>
+					<property name="x">400</property>
+					<property name="y">270</property>
+					<property name="width">100</property>
+					<property name="height">20</property>
+					<property name="autoresize">false</property>
+					<property name="text"></property>
+					<property name="text_align">center</property>
+				</widget>
+				<widget name="slider1" type="Slider">
+					<property name="show">true</property>
+					<property name="x">100</property>
+					<property name="y">300</property>
+					<property name="width">600</property>
+					<property name="height">80</property>
+					<property name="align">center_horizontal</property>
+					<property name="grab_mouse">true</property>
+					<property name="border_radius">4</property>
+					<property name="fillflags">blend</property>
+					<property name="normal_bg">file:slider1_background.png</property>
+					<property name="value" starting="0" ending="100">50</property>
+					<property name="sliderflags">rectangle_handle|hide_line</property>
+					<property name="orient">horizontal</property>
+					<property name="label_offset">0</property>
+					<property name="handle_offset">20</property>
+					<property name="handle_margin">-78</property>
+					<property name="normal_handle">file:slider1_handle.png</property>
+				</widget>
+				<widget name="slider2" type="SliderF">
+					<property name="show">true</property>
+					<property name="x">110</property>
+					<property name="y">400</property>
+					<property name="width">580</property>
+					<property name="height">60</property>
+					<property name="align">center_horizontal</property>
+					<property name="grab_mouse">true</property>
+					<property name="border_radius">4</property>
+					<property name="fillflags">blend</property>
+					<property name="normal_bg">file:slider2_background.png</property>
+					<property name="value" starting="0" ending="200" stepping="0.1">50</property>
+					<property name="sliderflags">rectangle_handle|show_label|hide_line</property>
+					<property name="orient">horizontal</property>
+					<property name="label_offset">0</property>
+					<property name="handle_offset">-18</property>
+					<property name="handle_margin">-58</property>
+					<property name="normal_handle">file:slider2_handle.png</property>
+				</widget>
+				<widget name="slider3" type="Slider">
+					<property name="show">true</property>
+					<property name="width">84</property>
+					<property name="height">480</property>
+					<property name="grab_mouse">true</property>
+					<property name="border_radius">4</property>
+					<property name="fillflags">blend</property>
+					<property name="normal_bg">file:slider3_background.png</property>
+					<property name="value" starting="5" ending="40">5</property>
+					<property name="sliderflags">rectangle_handle|hide_line</property>
+					<property name="orient">vertical</property>
+					<property name="label_offset">0</property>
+					<property name="handle_offset">26</property>
+					<property name="handle_margin">-80</property>
+					<property name="normal_handle">file:slider3_handle.png</property>
+				</widget>
+				<widget name="slider4" type="Slider">
+					<property name="show">true</property>
+					<property name="x">716</property>
+					<property name="width">84</property>
+					<property name="height">480</property>
+					<property name="grab_mouse">true</property>
+					<property name="border_radius">4</property>
+					<property name="fillflags">blend</property>
+					<property name="normal_bg">file:slider4_background.png</property>
+					<property name="value" starting="0" ending="10">5</property>
+					<property name="sliderflags">rectangle_handle|hide_line</property>
+					<property name="orient">vertical</property>
+					<property name="label_offset">0</property>
+					<property name="handle_offset">-25</property>
+					<property name="handle_margin">-79</property>
+					<property name="normal_handle">file:slider4_handle.png</property>
+				</widget>
+			</widget>
+		</widget>
+	</widgets>
+</egt>
+
