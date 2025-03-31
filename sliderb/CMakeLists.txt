@@ -1,5 +1,7 @@
 #---- Sliderb
 if(EGT_SAMPLES_CONTRIBUTION_SLIDERB)
+    pkg_check_modules(LIBEGT REQUIRED libegt>=1.11-rc1)
+
     add_executable(egt-sliderb main.cpp)
 
     target_compile_definitions(egt-sliderb PRIVATE EXAMPLEDATA="${CMAKE_INSTALL_FULL_DATADIR}/egt/samples/sliderb")
