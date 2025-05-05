@@ -5,7 +5,7 @@ project(
     VERSION 1.3
     DESCRIPTION "A collection of samples made by the community"
     LANGUAGES CXX)
-set(PROJECT_VERSION_RC 1)
+#set(PROJECT_VERSION_RC 1)
 
 include(GNUInstallDirs)
 

@@ -1,6 +1,6 @@
 #---- Sliderb
 if(EGT_SAMPLES_CONTRIBUTION_SLIDERB)
-    pkg_check_modules(LIBEGT REQUIRED libegt>=1.11-rc1)
+    pkg_check_modules(LIBEGT REQUIRED libegt>=1.11)
 
     add_executable(egt-sliderb main.cpp)
 
